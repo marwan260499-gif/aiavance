@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py
+*.pyc
+
+# Archivos temporales / herramientas
+favicon_io.zip
+favicon_extracted/
+*.jpeg
+
+# Logos duplicados (solo se sirven los que usa el HTML)
+logo_final.png
+logofifi.png
+loca.png
+
+# Sistema
+.DS_Store
+Thumbs.db
