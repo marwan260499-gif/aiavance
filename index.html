@@ -430,7 +430,7 @@
     /* ─── SERVICES ─── */
     .svc-r1 { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     .svc-r2 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 14px; }
-    .svc-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 34px 30px; transition: all 0.28s ease; cursor: default; position: relative; overflow: hidden; }
+    .svc-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 34px 30px; transition: all 0.28s ease; position: relative; overflow: hidden; }
     .svc-card::after { content: ''; position: absolute; inset: 0; background: var(--grad); opacity: 0; transition: opacity 0.3s; }
     .svc-card:hover { border-color: var(--borderh); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(13,110,253,0.12); }
     .svc-card:hover::after { opacity: 0.03; }
@@ -438,7 +438,9 @@
     .svc-card.gold-svc .svc-ibox { background: rgba(212,175,55,0.08); color: var(--gold); }
     .svc-title { font-size: 1.08rem; font-weight: 700; color: var(--off); margin-bottom: 11px; position: relative; z-index: 1; }
     .svc-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.72; position: relative; z-index: 1; }
-    .svc-arr { display: none; }
+    a.svc-card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
+    .svc-arr { display: flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 0.78rem; font-weight: 600; color: var(--bluel); position: relative; z-index: 1; transition: gap 0.2s; }
+    a.svc-card:hover .svc-arr { gap: 10px; }
 
     /* ─── DIFFERENTIAL ─── */
     .diff-section { background: linear-gradient(180deg,rgba(13,110,253,0.03),rgba(7,11,26,0.5)); border-top: 1px solid rgba(13,110,253,0.1); border-bottom: 1px solid rgba(13,110,253,0.1); }
@@ -1389,33 +1391,38 @@
       <h2 class="sh c rv d1">Todo lo que necesitas.<br><em>Nada que no necesites.</em></h2>
       <p class="ssub c rv d2" style="margin-top:0;margin-bottom:52px;">Cada servicio está pensado para generar un resultado concreto y medible en tu negocio.</p>
       <div class="svc-r1">
-        <div class="svc-card gold-svc rv">
+        <a href="/diseno-web-alta-conversion" class="svc-card gold-svc rv">
           <div class="svc-ibox"><i class="fa-solid fa-code"></i></div>
           <h3 class="svc-title">Diseño Web de alta conversión</h3>
           <p class="svc-desc">Páginas que transmiten confianza desde el primer segundo. Diseñadas para convertir visitas en llamadas y consultas. Entregadas en 15 días.</p>
-        </div>
-        <div class="svc-card rv d1">
+          <span class="svc-arr">Saber más <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="/seo-local" target="_blank" rel="noopener noreferrer" class="svc-card rv d1">
           <div class="svc-ibox"><i class="fa-solid fa-magnifying-glass"></i></div>
           <h3 class="svc-title">Posicionamiento SEO local</h3>
           <p class="svc-desc">Aparece antes que tu competencia cuando alguien busca tu servicio. Tráfico orgánico que no caduca.</p>
-        </div>
-        <div class="svc-card rv d2">
+          <span class="svc-arr">Saber más <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="/whatsapp-business" target="_blank" rel="noopener noreferrer" class="svc-card rv d2">
           <div class="svc-ibox"><i class="fa-brands fa-whatsapp"></i></div>
           <h3 class="svc-title">WhatsApp Business</h3>
           <p class="svc-desc">Respuestas automáticas, catálogos y flujos de atención para no perder ni un lead — ni a las 2am.</p>
-        </div>
+          <span class="svc-arr">Saber más <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
       </div>
       <div class="svc-r2">
-        <div class="svc-card rv">
+        <a href="/google-business" target="_blank" rel="noopener noreferrer" class="svc-card rv">
           <div class="svc-ibox"><i class="fa-solid fa-location-dot"></i></div>
           <h3 class="svc-title">Google Business</h3>
           <p class="svc-desc">Optimización completa de tu ficha para aparecer en el mapa local, generar reseñas y ganar confianza antes de que te llamen.</p>
-        </div>
-        <div class="svc-card rv d1">
+          <span class="svc-arr">Saber más <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="/ia-automatizaciones" target="_blank" rel="noopener noreferrer" class="svc-card rv d1">
           <div class="svc-ibox"><i class="fa-solid fa-brain"></i></div>
           <h3 class="svc-title">IA y Automatizaciones</h3>
           <p class="svc-desc">Chatbots inteligentes, flujos automáticos y sistemas de seguimiento para que tu negocio funcione 24/7 con un mínimo esfuerzo por tu parte.</p>
-        </div>
+          <span class="svc-arr">Saber más <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
       </div>
     </div>
   </section>
