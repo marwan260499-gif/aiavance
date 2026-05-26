@@ -24,10 +24,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" as="image" href="/loca.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
 
   <script type="application/ld+json">
   [
@@ -91,7 +94,7 @@
     body { font-family: var(--ff-s); background: linear-gradient(160deg,#050816 0%,#070B1A 55%,#060E1C 100%); color: var(--white); overflow-x: hidden; min-height: 100vh; }
     body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:0.025; pointer-events:none; z-index:9999; }
 
-    .blob { position:fixed; border-radius:50%; filter:blur(180px); pointer-events:none; z-index:0; }
+    .blob { position:fixed; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; will-change:transform; }
     .blob-1 { width:860px; height:860px; top:-280px; left:-220px; background:radial-gradient(circle,rgba(13,110,253,0.2),transparent 68%); }
     .blob-2 { width:640px; height:640px; bottom:-120px; right:-200px; background:radial-gradient(circle,rgba(13,110,253,0.07),transparent 68%); }
     .blob-3 { width:560px; height:560px; top:38%; left:56%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(30,144,255,0.08),transparent 68%); }
@@ -112,9 +115,11 @@
 
     /* BUTTONS */
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:13px 24px; border-radius:12px; font-family:var(--ff-s); font-size:0.9rem; font-weight:600; text-decoration:none; border:none; cursor:pointer; min-height:44px; transition:transform 0.22s ease,box-shadow 0.22s ease; white-space:nowrap; }
-    .btn-p { background:linear-gradient(135deg,#0D6EFD,#1E90FF); color:#fff; animation:bpulse 3s ease-in-out infinite; }
-    @keyframes bpulse { 0%,100%{box-shadow:0 0 0 0 rgba(13,110,253,0),0 4px 20px rgba(13,110,253,0.3);} 50%{box-shadow:0 0 32px 4px rgba(13,110,253,0.4),0 4px 20px rgba(13,110,253,0.38);} }
-    .btn-p:hover { transform:translateY(-2px); box-shadow:0 10px 40px rgba(13,110,253,0.58)!important; animation:none; }
+    .btn-p { background:linear-gradient(135deg,#0D6EFD,#1E90FF); color:#fff; position:relative; box-shadow:0 4px 20px rgba(13,110,253,0.3); }
+    .btn-p::after { content:''; position:absolute; inset:0; border-radius:inherit; box-shadow:0 0 32px 4px rgba(13,110,253,0.45); opacity:0; animation:bpulse 3s ease-in-out infinite; pointer-events:none; }
+    @keyframes bpulse { 0%,100%{opacity:0;} 50%{opacity:1;} }
+    .btn-p:hover { transform:translateY(-2px); box-shadow:0 10px 40px rgba(13,110,253,0.58); }
+    .btn-p:hover::after { animation:none; opacity:0; }
     .btn-g { background:rgba(255,255,255,0.06); color:var(--white); border:1px solid rgba(255,255,255,0.14); backdrop-filter:blur(12px); }
     .btn-g:hover { background:rgba(255,255,255,0.1); transform:translateY(-1px); }
     .btn-lg { padding:16px 32px; font-size:1rem; border-radius:14px; }
@@ -367,7 +372,7 @@
 <nav class="nav">
   <div class="wrap nav-inner">
     <a href="/" class="logo-link">
-      <img src="/loca.png" alt="AIAVANCE" class="logo-full">
+      <img src="/loca.png" alt="AIAVANCE" class="logo-full" fetchpriority="high">
     </a>
     <ul class="nav-links">
       <li><a href="/#impacto">Impacto</a></li>
@@ -389,7 +394,7 @@
 <div class="mob-overlay" id="mobOverlay"></div>
 <div class="mob-nav" id="mobNav" role="dialog" aria-label="Menú">
   <div class="mob-nav-top">
-    <img src="/loca.png" alt="AIAVANCE" class="mob-nav-logo">
+    <img src="/loca.png" alt="AIAVANCE" class="mob-nav-logo" fetchpriority="high">
     <button class="mob-nav-x" id="mobNavClose" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
   </div>
   <ul class="mob-nav-links">

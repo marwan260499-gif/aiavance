@@ -27,12 +27,15 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" as="image" href="/loca.png" fetchpriority="high">
   <!-- fin SEO AÑADIDO -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,7 +78,7 @@
       opacity: 0.025; pointer-events: none; z-index: 9999;
     }
 
-    .blob { position: fixed; border-radius: 50%; filter: blur(180px); pointer-events: none; z-index: 0; }
+    .blob { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; will-change: transform; }
     .blob-1 { width:860px; height:860px; top:-280px; left:-220px; background:radial-gradient(circle,rgba(13,110,253,0.2),transparent 68%); }
     .blob-2 { width:640px; height:640px; bottom:-120px; right:-200px; background:radial-gradient(circle,rgba(212,175,55,0.07),transparent 68%); }
     .blob-3 { width:560px; height:560px; top:38%; left:56%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(30,144,255,0.08),transparent 68%); }
@@ -115,12 +118,14 @@
       transition: transform 0.22s ease, box-shadow 0.22s ease;
       white-space: nowrap;
     }
-    .btn-p { background: linear-gradient(135deg,#0D6EFD,#1E90FF); color: #fff; animation: bpulse 3s ease-in-out infinite; }
+    .btn-p { background: linear-gradient(135deg,#0D6EFD,#1E90FF); color: #fff; position: relative; box-shadow: 0 4px 20px rgba(13,110,253,0.3); }
+    .btn-p::after { content:''; position:absolute; inset:0; border-radius:inherit; box-shadow:0 0 32px 4px rgba(13,110,253,0.45); opacity:0; animation:bpulse 3s ease-in-out infinite; pointer-events:none; }
     @keyframes bpulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(13,110,253,0), 0 4px 20px rgba(13,110,253,0.3); }
-      50%      { box-shadow: 0 0 32px 4px rgba(13,110,253,0.4), 0 4px 20px rgba(13,110,253,0.38); }
+      0%,100% { opacity: 0; }
+      50%      { opacity: 1; }
     }
-    .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(13,110,253,0.58)!important; animation: none; }
+    .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(13,110,253,0.58); }
+    .btn-p:hover::after { animation: none; opacity: 0; }
     .btn-g { background: rgba(255,255,255,0.06); color: var(--white); border: 1px solid rgba(255,255,255,0.14); backdrop-filter: blur(12px); }
     .btn-g:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); border-color: rgba(255,255,255,0.22); }
     .btn-lg { padding: 16px 32px; font-size: 1rem; border-radius: 14px; }
@@ -927,6 +932,26 @@
   ]
   </script>
   <!-- fin SEO AÑADIDO -->
+
+  <!-- Prefetch key pages for faster navigation -->
+  <link rel="prefetch" href="/seo-local">
+  <link rel="prefetch" href="/whatsapp-business">
+  <link rel="prefetch" href="/ia-automatizaciones">
+  <link rel="prefetch" href="/google-business">
+  <link rel="prefetch" href="/diseno-web-alta-conversion">
+  <link rel="prefetch" href="/blog">
+
+  <!-- Speculation Rules API: prerender service pages on hover intent -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/(seo-local|whatsapp-business|ia-automatizaciones|google-business|diseno-web-alta-conversion|blog)" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -939,7 +964,7 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <a href="#" class="logo-link">
-        <img src="loca.png" alt="AIAVANCE Agency" class="logo-full">
+        <img src="loca.png" alt="AIAVANCE Agency" class="logo-full" fetchpriority="high">
       </a>
 
       <ul class="nav-links">
@@ -965,7 +990,7 @@
   <div class="mob-overlay" id="mobOverlay"></div>
   <div class="mob-nav" id="mobNav" role="dialog" aria-label="Menú de navegación">
     <div class="mob-nav-top">
-      <img src="loca.png" alt="AIAVANCE Agency" class="mob-nav-logo">
+      <img src="loca.png" alt="AIAVANCE Agency" class="mob-nav-logo" fetchpriority="high">
       <button class="mob-nav-x" id="mobNavClose" aria-label="Cerrar menú"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <ul class="mob-nav-links">
@@ -1029,7 +1054,7 @@
             <!-- Header -->
             <div class="mv-bar">
               <div class="mv-bar-left">
-                <img src="logoo.png" class="mv-logo-ico" alt="Logo AIAVANCE Agency">
+                <img src="logoo.png" class="mv-logo-ico" alt="Logo AIAVANCE Agency" loading="lazy" width="24" height="24">
                 <span class="mv-title">AIAVANCE &nbsp;·&nbsp; Dashboard &nbsp;·&nbsp; Jun 2026</span>
               </div>
               <div class="mv-filter">
