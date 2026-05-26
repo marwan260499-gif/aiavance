@@ -991,55 +991,57 @@
   if (mobOverlay) mobOverlay.addEventListener('click', closeMobNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobNav(); });
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwONvj5qJcIGfJq97h_3W92sY0W3uXdn2XPc9N0VftuENrfqf-oXzXN8v-bMHHEO-p/exec';
-  const overlay  = document.getElementById('modalOverlay');
-  const closeBtn = document.getElementById('modalClose');
-  function openModal()  { overlay.classList.add('open');    document.body.style.overflow = 'hidden'; }
-  function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  document.addEventListener('DOMContentLoaded', function() {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwONvj5qJcIGfJq97h_3W92sY0W3uXdn2XPc9N0VftuENrfqf-oXzXN8v-bMHHEO-p/exec';
+    const overlay  = document.getElementById('modalOverlay');
+    const closeBtn = document.getElementById('modalClose');
+    function openModal()  { overlay.classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
 
-  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-    if (link.closest('.modal-success')) return;
-    link.addEventListener('click', e => { e.preventDefault(); openModal(); });
-  });
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  const form = document.getElementById('leadForm'), submitBtn = document.getElementById('formSubmitBtn'), modalForm = document.getElementById('modalForm'), modalSuccess = document.getElementById('modalSuccess');
-
-  function validate() {
-    let ok = true;
-    ['f-nombre','f-telefono','f-email','f-negocio'].forEach(id => {
-      const el = document.getElementById(id);
-      el.classList.remove('error');
-      if (!el.value.trim() || (id === 'f-email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value))) {
-        el.classList.add('error'); ok = false;
-      }
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+      if (link.closest('.modal-success')) return;
+      link.addEventListener('click', e => { e.preventDefault(); openModal(); });
     });
-    return ok;
-  }
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!validate()) return;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-    const data = {
-      nombre:   document.getElementById('f-nombre').value.trim(),
-      telefono: document.getElementById('f-telefono').value.trim(),
-      email:    document.getElementById('f-email').value.trim(),
-      empresa:  document.getElementById('f-empresa').value.trim(),
-      negocio:  document.getElementById('f-negocio').value,
-      reto:     document.getElementById('f-reto').value.trim(),
-      fecha:    new Date().toLocaleString('es-ES')
-    };
-    try {
-      const params = new URLSearchParams();
-      Object.entries(data).forEach(([k, v]) => params.append(k, v));
-      await fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
-    } catch (_) {}
-    modalForm.classList.add('hide');
-    modalSuccess.classList.add('show');
+    const form = document.getElementById('leadForm'), submitBtn = document.getElementById('formSubmitBtn'), modalForm = document.getElementById('modalForm'), modalSuccess = document.getElementById('modalSuccess');
+
+    function validate() {
+      let ok = true;
+      ['f-nombre','f-telefono','f-email','f-negocio'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.remove('error');
+        if (!el.value.trim() || (id === 'f-email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value))) {
+          el.classList.add('error'); ok = false;
+        }
+      });
+      return ok;
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!validate()) return;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+      const data = {
+        nombre:   document.getElementById('f-nombre').value.trim(),
+        telefono: document.getElementById('f-telefono').value.trim(),
+        email:    document.getElementById('f-email').value.trim(),
+        empresa:  document.getElementById('f-empresa').value.trim(),
+        negocio:  document.getElementById('f-negocio').value,
+        reto:     document.getElementById('f-reto').value.trim(),
+        fecha:    new Date().toLocaleString('es-ES')
+      };
+      try {
+        const params = new URLSearchParams();
+        Object.entries(data).forEach(([k, v]) => params.append(k, v));
+        await fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+      } catch (_) {}
+      modalForm.classList.add('hide');
+      modalSuccess.classList.add('show');
+    });
   });
 </script>
 
