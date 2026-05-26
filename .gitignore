@@ -8,10 +8,9 @@ favicon_io.zip
 favicon_extracted/
 *.jpeg
 
-# Logos duplicados (solo se sirven los que usa el HTML)
+# Logos sin usar
 logo_final.png
 logofifi.png
-loca.png
 
 # Sistema
 .DS_Store
