@@ -845,39 +845,38 @@
   [
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "Organization",
+      "@id": "https://aiavance.es/#organization",
       "name": "AIAVANCE",
-      "description": "Automatizamos procesos, mejoramos la presencia digital y generamos más oportunidades de negocio mediante IA para empresas en España.",
       "url": "https://aiavance.es",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://aiavance.es/#logo",
+        "url": "https://aiavance.es/loca.png",
+        "contentUrl": "https://aiavance.es/loca.png",
+        "width": 440,
+        "height": 110
+      },
       "email": "contacto@aiavance.es",
       "telephone": "+34697325890",
-      "image": "https://aiavance.es/og-image.jpg",
-      "logo": "https://aiavance.es/loca.png",
-      "areaServed": {
-        "@type": "Country",
-        "name": "España"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "ES"
-      },
-      "priceRange": "€€",
+      "description": "AIAVANCE es una agencia especializada en SEO Local, Google Business, automatización de procesos, automatización WhatsApp Business, inteligencia artificial para empresas y diseño web orientado a la captación de clientes.",
+      "areaServed": [
+        { "@type": "City", "name": "Alicante" },
+        { "@type": "City", "name": "Barcelona" },
+        { "@type": "Country", "name": "España" }
+      ],
       "sameAs": [
-        "https://www.instagram.com/aiavance.agency",
-        "https://www.facebook.com/AIAVANCE/"
-      ],
-      "serviceType": [
-        "Diseño web profesional",
-        "SEO local",
-        "Automatización con IA",
-        "WhatsApp Business"
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-        "opens": "09:00",
-        "closes": "19:00"
-      }
+        "https://www.instagram.com/aiavance",
+        "https://www.facebook.com/share/1am6KSKqhf"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://aiavance.es/#website",
+      "url": "https://aiavance.es",
+      "name": "AIAVANCE",
+      "publisher": { "@id": "https://aiavance.es/#organization" }
     },
     {
       "@context": "https://schema.org",
