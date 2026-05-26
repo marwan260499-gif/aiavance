@@ -338,6 +338,38 @@
     /* SECTION SEPARATOR */
     .section-sep { height:1px; background:rgba(255,255,255,0.06); margin:0; }
 
+    /* MODAL */
+    .modal-overlay { position:fixed; inset:0; z-index:9000; background:rgba(3,5,16,0.9); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+    .modal-overlay.open { opacity:1; pointer-events:all; }
+    .modal { background:linear-gradient(160deg,#070B1A,#050816); border:1px solid rgba(13,110,253,0.18); border-radius:26px; padding:48px 44px; width:100%; max-width:520px; position:relative; transform:translateY(20px) scale(0.97); transition:transform 0.3s ease; box-shadow:0 32px 80px rgba(0,0,0,0.7),0 0 60px rgba(13,110,253,0.08); }
+    .modal-overlay.open .modal { transform:translateY(0) scale(1); }
+    .modal-close { position:absolute; top:20px; right:20px; width:34px; height:34px; border-radius:9px; background:rgba(255,255,255,0.05); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.9rem; cursor:pointer; transition:all 0.2s; }
+    .modal-close:hover { background:rgba(255,255,255,0.1); color:var(--white); }
+    .modal-tag { font-family:var(--ff-m); font-size:0.68rem; color:var(--bluel); letter-spacing:2.5px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+    .modal-tag::before { content:''; width:16px; height:1px; background:var(--bluel); }
+    .modal-h { font-family:var(--ff-d); font-size:2rem; font-weight:900; line-height:1.1; letter-spacing:-0.02em; margin-bottom:8px; }
+    .modal-sub { font-size:0.88rem; color:var(--muted); margin-bottom:32px; line-height:1.6; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .form-group { display:flex; flex-direction:column; gap:7px; margin-bottom:14px; }
+    .form-group label { font-size:0.78rem; color:var(--muted2); font-weight:500; letter-spacing:0.3px; }
+    .form-group input,.form-group select,.form-group textarea { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:11px; padding:13px 16px; color:var(--white); font-family:var(--ff-s); font-size:0.92rem; outline:none; transition:border-color 0.2s,background 0.2s; width:100%; }
+    .form-group input::placeholder,.form-group textarea::placeholder { color:var(--muted); }
+    .form-group select { cursor:pointer; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%236e7a90' d='M8 10L3 5h10z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-size:12px; padding-right:36px; }
+    .form-group select option { background:#0b0e22; color:var(--white); }
+    .form-group textarea { resize:none; height:88px; line-height:1.6; }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:rgba(37,99,255,0.5); background:rgba(37,99,255,0.05); }
+    .form-group input.error,.form-group select.error { border-color:rgba(239,68,68,0.6); }
+    .form-submit { width:100%; padding:16px; background:var(--grad); color:#fff; border:none; border-radius:13px; font-family:var(--ff-s); font-size:1rem; font-weight:700; cursor:pointer; margin-top:8px; transition:transform 0.2s,box-shadow 0.2s; display:flex; align-items:center; justify-content:center; gap:9px; }
+    .form-submit:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(37,99,255,0.4); }
+    .form-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+    .form-micro { text-align:center; margin-top:13px; font-family:var(--ff-m); font-size:0.68rem; color:var(--muted); letter-spacing:0.5px; }
+    .modal-success { display:none; text-align:center; padding:20px 0; }
+    .modal-success.show { display:block; }
+    .modal-form.hide { display:none; }
+    .success-ico { width:72px; height:72px; border-radius:50%; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--green); margin:0 auto 24px; }
+    .success-h { font-family:var(--ff-d); font-size:1.8rem; font-weight:900; margin-bottom:12px; }
+    .success-p { color:var(--muted2); line-height:1.7; font-size:0.95rem; }
+
     /* RESPONSIVE */
     @media(max-width:1024px) {
       .auto-grid { grid-template-columns:repeat(4,1fr); }
@@ -870,7 +902,7 @@
           <a href="/whatsapp-business" class="btn btn-p btn-lg">
             <i class="fa-brands fa-whatsapp"></i> Ver servicio de WhatsApp Business
           </a>
-          <a href="/contacto" class="btn btn-g btn-lg">
+          <a href="https://wa.me/34697325890?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20gratuita%20sobre%20automatizaci%C3%B3n%20de%20WhatsApp%20Business%20con%20AIAVANCE." class="btn btn-g btn-lg" rel="noopener noreferrer">
             Solicitar auditoría gratuita <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -949,7 +981,106 @@
   if (mobClose)   mobClose.addEventListener('click', closeMobNav);
   if (mobOverlay) mobOverlay.addEventListener('click', closeMobNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobNav(); });
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwONvj5qJcIGfJq97h_3W92sY0W3uXdn2XPc9N0VftuENrfqf-oXzXN8v-bMHHEO-p/exec';
+  const overlay  = document.getElementById('modalOverlay');
+  const closeBtn = document.getElementById('modalClose');
+  function openModal()  { overlay.classList.add('open');    document.body.style.overflow = 'hidden'; }
+  function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    if (link.closest('.modal-success')) return;
+    link.addEventListener('click', e => { e.preventDefault(); openModal(); });
+  });
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  const form = document.getElementById('leadForm'), submitBtn = document.getElementById('formSubmitBtn'), modalForm = document.getElementById('modalForm'), modalSuccess = document.getElementById('modalSuccess');
+
+  function validate() {
+    let ok = true;
+    ['f-nombre','f-telefono','f-email','f-negocio'].forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.remove('error');
+      if (!el.value.trim() || (id === 'f-email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value))) {
+        el.classList.add('error'); ok = false;
+      }
+    });
+    return ok;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validate()) return;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+    const data = {
+      nombre:   document.getElementById('f-nombre').value.trim(),
+      telefono: document.getElementById('f-telefono').value.trim(),
+      email:    document.getElementById('f-email').value.trim(),
+      empresa:  document.getElementById('f-empresa').value.trim(),
+      negocio:  document.getElementById('f-negocio').value,
+      reto:     document.getElementById('f-reto').value.trim(),
+      fecha:    new Date().toLocaleString('es-ES')
+    };
+    try {
+      const params = new URLSearchParams();
+      Object.entries(data).forEach(([k, v]) => params.append(k, v));
+      await fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+    } catch (_) {}
+    modalForm.classList.add('hide');
+    modalSuccess.classList.add('show');
+  });
 </script>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-form" id="modalForm">
+      <div class="modal-tag">Contacto</div>
+      <h2 class="modal-h" id="modalTitle">Cuéntanos sobre<br>tu negocio.</h2>
+      <p class="modal-sub">Te contactamos en menos de 24h con un análisis gratuito y sin compromiso.</p>
+      <form id="leadForm" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label for="f-nombre">Nombre *</label><input type="text" id="f-nombre" name="nombre" placeholder="Tu nombre" autocomplete="given-name"></div>
+          <div class="form-group"><label for="f-telefono">Teléfono *</label><input type="tel" id="f-telefono" name="telefono" placeholder="+34 600 000 000" autocomplete="tel"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="f-email">Email *</label><input type="email" id="f-email" name="email" placeholder="tu@email.com" autocomplete="email"></div>
+          <div class="form-group"><label for="f-empresa">Empresa</label><input type="text" id="f-empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization"></div>
+        </div>
+        <div class="form-group">
+          <label for="f-negocio">Tipo de negocio *</label>
+          <select id="f-negocio" name="negocio">
+            <option value="" disabled selected>Selecciona tu sector</option>
+            <option>Restaurante / Hostelería</option><option>Peluquería / Barbería</option>
+            <option>Clínica / Estética / Salud</option><option>Taller / Automoción</option>
+            <option>Tienda / Comercio local</option><option>Servicio a domicilio</option>
+            <option>Inmobiliaria</option><option>Consultoría / Asesoría</option><option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-reto">¿Cuál es tu mayor reto digital? <span style="color:var(--muted)">(opcional)</span></label>
+          <textarea id="f-reto" name="reto" placeholder="Ej: No respondo a tiempo, pierdo clientes, necesito automatizar WhatsApp..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formSubmitBtn">
+          <i class="fa-solid fa-paper-plane"></i> Enviar solicitud gratuita
+        </button>
+        <p class="form-micro">Sin compromiso &nbsp;·&nbsp; Sin tarjeta &nbsp;·&nbsp; 100% confidencial</p>
+      </form>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-ico"><i class="fa-solid fa-check"></i></div>
+      <h3 class="success-h">¡Solicitud enviada!</h3>
+      <p class="success-p">Hemos recibido tus datos y te contactaremos en menos de 24h con tu análisis gratuito.<br><br>Mientras tanto, si prefieres hablar ahora:</p>
+      <a href="https://wa.me/34697325890?text=Hola%2C%20quiero%20llevar%20mi%20negocio%20al%20siguiente%20nivel%20digital%20con%20AIAVANCE." class="btn btn-p" style="margin-top:24px;width:100%;justify-content:center;" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
